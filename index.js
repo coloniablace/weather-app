@@ -1,12 +1,12 @@
-const apikey = "46f80a02ecae410460d59960ded6e1c6";
+const apikey = '46f80a02ecae410460d59960ded6e1c6';
 
-const weatherDataEl = document.getElementById("weather-data");
+const weatherDataEl = document.getElementById('weather-data');
 
-const cityInputEl = document.getElementById("city-input");
+const cityInputEl = document.getElementById('city-input');
 
-const formEl = document.querySelector("form");
+const formEl = document.querySelector('form');
 
-formEl.addEventListener("submit", (event) => {
+formEl.addEventListener('submit', (event) => {
   event.preventDefault();
   const cityValue = cityInputEl.value;
   getWeatherData(cityValue);
@@ -19,7 +19,7 @@ async function getWeatherData(cityValue) {
     );
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error('Network response was not ok');
     }
 
     const data = await response.json();
@@ -37,22 +37,22 @@ async function getWeatherData(cityValue) {
     ];
 
     weatherDataEl.querySelector(
-      ".icon"
+      '.icon'
     ).innerHTML = `<img src="http://openweathermap.org/img/wn/${icon}.png" alt="Weather Icon">`;
     weatherDataEl.querySelector(
-      ".temperature"
+      '.temperature'
     ).textContent = `${temperature}°C`;
-    weatherDataEl.querySelector(".description").textContent = description;
+    weatherDataEl.querySelector('.description').textContent = description;
 
-    weatherDataEl.querySelector(".details").innerHTML = details
+    weatherDataEl.querySelector('.details').innerHTML = details
       .map((detail) => `<div>${detail}</div>`)
-      .join("");
+      .join('');
   } catch (error) {
-    weatherDataEl.querySelector(".icon").innerHTML = "";
-    weatherDataEl.querySelector(".temperature").textContent = "";
-    weatherDataEl.querySelector(".description").textContent =
-      "An error happened, please try again later";
+    weatherDataEl.querySelector('.icon').innerHTML = '';
+    weatherDataEl.querySelector('.temperature').textContent = '';
+    weatherDataEl.querySelector('.description').textContent =
+      'An error happened, please try again later';
 
-    weatherDataEl.querySelector(".details").innerHTML = "";
+    weatherDataEl.querySelector('.details').innerHTML = '';
   }
 }
